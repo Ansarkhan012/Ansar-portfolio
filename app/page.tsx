@@ -1,65 +1,135 @@
-import Image from "next/image";
+'use client'
 
-export default function Home() {
+import React, { useState, useEffect } from 'react'
+import ProjectsPage from './projects/page'
+
+export default function HomePage() {
+  const [currentTime, setCurrentTime] = useState<string>('')
+  const [activeProjectTitle, setActiveProjectTitle] = useState<string | null>(null)
+
+  /* ---------------- Time Update ---------------- */
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date()
+      const timeString = now.toLocaleTimeString('en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        hour12: true,
+      })
+      setCurrentTime(timeString)
+    }
+
+    updateTime()
+    const interval = setInterval(updateTime, 1000)
+    return () => clearInterval(interval)
+  }, [])
+
+  /* ---------------- Projects Data ---------------- */
+  const myProjects = [
+    {
+      id: 'Al-Sheeraz',
+      name: 'Al Sheeraz',
+      title: 'Premium E-commerce Platform',
+      description: 'Complete online shopping platform with advanced features.',
+      image: '/projects/al-sheeraz.jpg',
+      techStack: ['Next.js 14', 'TypeScript', 'Tailwind', 'MongoDB', 'Stripe'],
+      completionDate: 'Dec 2024',
+      progress: 100,
+    },
+    {
+      id: 'portfolio-v2',
+      name: 'Portfolio V2',
+      title: 'Modern Portfolio Experience',
+      description: 'My personal portfolio with 3D animations.',
+      image: '/projects/portfolio.jpg',
+      techStack: ['React', 'Three.js', 'Framer Motion', 'GSAP'],
+      completionDate: 'Jan 2025',
+      progress: 100,
+    },
+    {
+      id: 'taskflow',
+      name: 'Task Flow',
+      title: 'AI Task Manager',
+      description: 'Smart task management with AI suggestions.',
+      image: '/projects/taskflow.jpg',
+      techStack: ['Next.js', 'OpenAI', 'Prisma', 'PostgreSQL'],
+      completionDate: 'Feb 2025',
+      progress: 90,
+    },
+    {
+      id: 'health-monitor',
+      name: 'Health Monitor',
+      title: 'Health Tracking Dashboard',
+      description: 'Real-time health monitoring dashboard.',
+      image: '/projects/health.jpg',
+      techStack: ['React Native', 'Node.js', 'GraphQL', 'AWS'],
+      completionDate: 'Mar 2025',
+      progress: 75,
+    },
+    {
+      id: 'finance-dash',
+      name: 'Finance Dash',
+      title: 'Financial Analytics Platform',
+      description: 'Financial analytics and visualization tool.',
+      image: '/projects/finance.jpg',
+      techStack: ['Vue.js', 'D3.js', 'Express', 'MySQL'],
+      completionDate: 'Apr 2025',
+      progress: 60,
+    },
+  ]
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-black text-white p-6 md:p-10">
+      
+      {/* ---------------- Header Section ---------------- */}
+      <section className="md:flex justify-between items-center">
+        
+        {/* Name / Project Title */}
+        <div>
+          <h1 className="text-5xl md:text-9xl font-semibold tracking-tight transition-all duration-300">
+           {activeProjectTitle ? (
+    <span className="text-gray-100">
+      {activeProjectTitle.split(' ').map((word, i) => (
+        <React.Fragment key={i}>
+          {word}
+          <br />
+        </React.Fragment>
+      ))}
+    </span>
+  ) : (
+    <>
+      ANSAR <br />
+      KHAN
+    </>
+  )}
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Role */}
+        <div className="hidden md:block">
+          <p className="text-lg text-gray-400">Web Developer</p>
         </div>
-      </main>
+
+        {/* Time */}
+        <div className="text-right mt-6 md:mt-0">
+          <div className="text-sm text-gray-400">Local Time</div>
+          <div className="text-md md:text-xl font-mono mt-1">
+            {currentTime}
+          </div>
+          <div className="text-xs text-gray-600 mt-1">
+            Karachi, Pakistan
+          </div>
+        </div>
+      </section>
+
+      {/* ---------------- Projects Section ---------------- */}
+      <section className="mt-12">
+        <ProjectsPage
+          mainTitle="MY PROJECTS"
+          projects={myProjects}
+          onProjectHover={setActiveProjectTitle}
+        />
+      </section>
     </div>
-  );
+  )
 }
