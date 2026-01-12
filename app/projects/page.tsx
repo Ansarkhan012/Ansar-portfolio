@@ -158,7 +158,7 @@ export default function ProjectsPage({ mainTitle = "My Projects", projects, onPr
                 className="group block w-56 h-36 bg-linear-to-b from-gray-900 to-black rounded-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-4"
               >
                 <div className="relative h-28 bg-linear-to-r from-gray-800 to-gray-900">
-                  {/* You can add actual images here */}
+                  {/* Card */}
                   <div className="w-full h-full flex items-center justify-center">
                     <div className="text-gray-400 text-sm">{project.name}</div>
                   </div>
