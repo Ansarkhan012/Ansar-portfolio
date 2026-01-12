@@ -84,7 +84,7 @@ export default function HomePage() {
       {/* ---------------- Header Section ---------------- */}
       <section className="md:flex justify-between items-center">
         
-        {/* Name / Project Title */}
+        {/* Name  */}
         <div>
           <h1 className="text-5xl md:text-9xl font-semibold tracking-tight transition-all duration-300">
            {activeProjectTitle ? (
