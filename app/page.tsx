@@ -105,7 +105,7 @@ export default function HomePage() {
           </h1>
         </div>
 
-        {/* Role */}
+        
         <div className="hidden md:block">
           <p className="text-lg text-gray-400">Web Developer</p>
         </div>
@@ -122,7 +122,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------------- Projects Section ---------------- */}
+      {/* ------------- Projects Section ------------- */}
       <section className="mt-12">
         <ProjectsPage
           mainTitle="MY PROJECTS"
