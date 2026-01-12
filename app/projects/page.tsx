@@ -154,7 +154,7 @@ export default function ProjectsPage({ mainTitle = "My Projects", projects, onPr
               }`}
             >
               <Link
-                href={`/projects/${project.slug}`}  // ← Use slug here
+                href={`/projects/${project.slug}`} 
                 className="group block w-56 h-36 bg-linear-to-b from-gray-900 to-black rounded-2xl overflow-hidden transition-all duration-500 transform hover:-translate-y-4"
               >
                 <div className="relative h-28 bg-linear-to-r from-gray-800 to-gray-900">
